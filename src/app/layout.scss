@@ -1,0 +1,231 @@
+// IMPORTANT: Styles here generally affect the overall application layout and "stock" components.
+// Do not clutter this sheet with things that are specific to custom components unique to portions of the application.
+// Instead, create an "scss" file as needed for the component.
+
+// Global styles
+body {
+  background-color: var(--body-bg);
+  color: var(--body-color);
+  transition: background-color 0.3s ease, color 0.3s ease; // Smooth theme switching
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Ensure it spans the full viewport height */
+}
+
+// Header and navbar styles
+header {
+  background-color: #1a1a1a !important;
+  /* Soft black background */
+  color: #f8f9fa;
+  /* Light text for consistency */
+
+  .navbar {
+    background-color: #1a1a1a !important;
+    /* Soft black background */
+    color: #f8f9fa;
+    /* Light text for contrast */
+
+    a {
+      color: #f8f9fa !important;
+      /* Light text for navbar links */
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #e9ecef !important;
+      /* Slightly lighter color on hover */
+      text-decoration: underline;
+    }
+
+    button {
+      background-color: white;
+    }
+  }
+}
+
+// Menus: Hamburger and Horizontal
+.horizontal-menu {
+  display: none;
+  /* Hidden by default */
+}
+
+.hamburger-menu {
+  display: none;
+  /* Hidden by default */
+  position: relative;
+  /* Ensure the parent container doesn't constrain the child */
+}
+
+// Responsive menu visibility
+@media (min-width: 992px) {
+  .horizontal-menu {
+    display: flex !important;
+    /* Show horizontal menu on large screens (>= 992px) */
+  }
+}
+
+@media (max-width: 991px) {
+  .hamburger-menu {
+    display: flex !important;
+    /* Show hamburger menu on small and medium screens (< 992px) */
+  }
+}
+
+// Hamburger menu dropdown
+.hamburger-menu-choices {
+  position: absolute;
+  /* Move the menu up by 15px */
+  top: calc(100% - 15px);
+  /* Center horizontally */
+  left: 50%;
+  transform: translateX(-50%);
+  /* Dark background for contrast */
+  background-color: #1a1a1a;
+  z-index: 1050;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  /* Dark border */
+  border: 1px solid #333;
+  /* Use a percentage of the viewport width */
+  width: 90%;
+  /* Optional: limit maximum width */
+  max-width: 400px;
+  /* Optional: ensure a minimum width */
+  min-width: 300px;
+  /* Optional rounded corners */
+  border-radius: 4px;
+  padding: 0;
+  margin: 0;
+}
+
+// Hamburger menu dropdown items
+.hamburger-menu-choices .list-group-item {
+  /* Match background with menu */
+  background-color: #1a1a1a;
+  /* Light text for visibility */
+  color: #f8f9fa;
+  /* Remove default border */
+  border: none;
+  /* Add padding for better spacing */
+  padding: 0.75rem 1rem;
+
+  &:hover {
+    /* Slightly lighter dark for hover effect */
+    background-color: #343a40;
+    /* Lighter text for hover */
+    color: #e9ecef;
+  }
+}
+
+.hamburger-menu-choices .nav-link {
+  /* Remove underline */
+  text-decoration: none;
+  /* Inherit the text color */
+  color: inherit;
+
+  &:hover {
+    /* Subtle change on hover */
+    color: #adb5bd;
+  }
+}
+
+[data-theme="dark"] {
+  .modal-dialog {
+    color: black;
+  }
+}
+
+// Content styles
+.content {
+  padding: 20px;
+  /* Allow content to grow */
+  flex: 1;
+}
+
+// Typography
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  color: var(--purple);
+}
+
+h3 {
+  font-size: 1.1rem;
+  color: var(--blue);
+}
+
+// Button styles
+.btn {
+  font-size: .85rem;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-success,
+.btn-danger {
+  /* We override Bootstrap's lighter backgrounds, so now we need white text for proper contrast */
+  color: white;
+}
+
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .btn-secondary,
+[data-theme="dark"] .btn-success,
+[data-theme="dark"] .btn-danger,
+[data-theme="dark"] .btn-outline-secondary {
+  /* We override Bootstrap's lighter backgrounds, so now we need white text for proper contrast */
+  color: white;
+}
+
+[data-theme="light"] .btn-light {
+  border-color: #1a1a1a;
+}
+
+// Override Bootstrap's Alert
+.alert {
+  padding: 10px 10px;
+}
+
+// Override Bootstrap's Form Elements
+.form-control,
+.form-select {
+  font-size: 1rem;
+  padding: 5px 5px;
+  line-height: 1;
+}
+
+// Footer styles
+.footer {
+  /* Soft black */
+  background-color: #1a1a1a;
+  /* Light text for readability */
+  color: #f8f9fa;
+  /* Center align text */
+  text-align: center;
+  /* Add some padding */
+  padding: 1rem;
+  /* Ensure consistent height */
+  height: 60px;
+  /* Flexbox for alignment */
+  display: flex;
+  /* Horizontally center the content */
+  justify-content: center;
+  /* Vertically center the content */
+  align-items: center;
+
+  img {
+    /* Scale the logo to 50px height */
+    height: 50px;
+    /* Maintain aspect ratio */
+    width: auto;
+    /* Add spacing below the logo */
+    margin-bottom: 0.5rem;
+  }
+}

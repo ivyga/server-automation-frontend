@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint", // ESLint extension
+        "ritwickdey.LiveServer", // Live Server extension
+        "esbenp.prettier-vscode" // Prettier extension
+    ],
+    "unwantedRecommendations": []
+}
