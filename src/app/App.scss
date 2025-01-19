@@ -1,3 +1,157 @@
 @import './bootstrap.customized.scss';
-@import './layout.scss';
 
+// IMPORTANT: Styles here generally affect the overall application layout and "stock" components.
+// Do not clutter this sheet with things that are specific to custom components unique to portions of the application.
+// Instead, create an "scss" file as needed for the component.
+
+// Global styles
+body {
+    background-color: var(--body-bg);
+    color: var(--body-color);
+    transition: background-color 0.3s ease, color 0.3s ease; // Smooth theme switching
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Ensure it spans the full viewport height */
+}
+
+// Header and navbar styles
+header {
+    background-color: black !important;
+    /* Soft black background */
+    color: #f8f9fa;
+
+    .brand-name {
+        font-size: 1.5em;
+    }
+
+    nav.app-nav-bar.navbar.navbar-expand-lg.navbar-light.bg-light {
+        --bs-light-rgb: 0, 0, 0; // Change to black
+        background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)); // Use the updated variable
+    }
+
+    nav.app-nav-hamburger.navbar.navbar-expand-lg.navbar-light.bg-light {
+        --bs-light-rgb: 0, 0, 0; // Change to black
+        background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)); // Use the updated variable
+    }
+
+    .navbar-toggler-icon {
+        background-color: white;
+    }
+
+    nav.app-nav-hamburger .navbar-nav {
+        position: absolute;
+        top: calc(100% - 7px);
+        left: -115px;
+        padding-left: 10px;
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 6px;
+        width: 160px;
+
+        .nav-link {
+            color: black;
+        }
+
+        .dropdown-menu[data-bs-popper] {
+            position: absolute;
+            left: -25px;
+            background-color: white;
+        }
+
+    }
+
+    header nav.app-nav-hamburger .navbar-nav .nav-link.active,
+    header .navbar-nav .nav-link.show {
+        color: black;
+    }
+
+    @media (max-width: 991.98px) {
+        nav.app-nav-bar {
+            display: none;
+        }
+    }
+
+    @media (min-width: 991.99px) {
+        nav.app-nav-hamburger {
+            display: none;
+            background-color: black;
+        }
+    }
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link.show {
+        color: white;
+    }
+
+    nav.app-nav-bar .nav-link {
+        color: white;
+    }
+}
+
+[data-theme="dark"] {
+    .modal-dialog {
+        color: black;
+    }
+}
+
+// Content styles
+.content {
+    padding: 20px;
+    /* Allow content to grow */
+    flex: 1;
+}
+
+// Typography
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.3rem;
+    color: var(--purple);
+}
+
+h3 {
+    font-size: 1.1rem;
+    color: var(--blue);
+}
+
+// Button styles
+.btn {
+    font-size: .85rem;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-success,
+.btn-danger {
+    /* We override Bootstrap's lighter backgrounds, so now we need white text for proper contrast */
+    color: white;
+}
+
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .btn-secondary,
+[data-theme="dark"] .btn-success,
+[data-theme="dark"] .btn-danger,
+[data-theme="dark"] .btn-outline-secondary {
+    /* We override Bootstrap's lighter backgrounds, so now we need white text for proper contrast */
+    color: white;
+}
+
+[data-theme="light"] .btn-light {
+    border-color: #1a1a1a;
+}
+
+// Override Bootstrap's Form Elements
+.form-control,
+.form-select {
+    font-size: 1rem;
+    padding: 5px 5px;
+    line-height: 1;
+}

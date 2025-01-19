@@ -79,7 +79,10 @@ $body-color: $dark; // Default body text color
 
   --body-bg: var(--light); // Default light theme background
   --body-color: var(--dark); // Default light theme text color
+  --bs-navbar-active-color: rgba(var(--white), 1); // Navbar hover state color
   --navbar-dark-hover-color: rgba(var(--white), 1); // Navbar hover state color
+
+  --bs-navbar-color: black;
 }
 
 // Define CSS Custom Properties (runtime variables) for the dark theme
@@ -127,4 +130,3 @@ $body-color: $dark; // Default body text color
 // defined earlier in this file are applied when Bootstrap's styles are compiled.
 // If this import is placed before customizations, Bootstrap will use its default styles.
 @import "bootstrap/scss/bootstrap.scss";
-

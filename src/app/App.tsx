@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect, Component, ErrorInfo } from 'react';
+import React, { useEffect, Component, ErrorInfo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { HorizontalMenu, HamburgerMenu } from '../common/components/navbars';
 import { Home } from '../features/main-feature/pages/Home';
 import { About } from '../features/main-feature/pages/About';
 import { StyleDemo } from '../features/main-feature/pages/StyleDemo';
@@ -11,18 +10,11 @@ import { ErrorModal, WaitingModal, displayError } from '../common/components/mod
 import conf from '../conf/conf.js';
 
 import './App.scss';
-import siteLogo from '../images/site-logo.png';
-import wwtLogo from '../images/wwt-logo.png';
-import { ApiExample } from '../features/demo-api/pages/ApiExample.js';
-import { FormDemo } from '../features/demo-form/pages/FormDemo.js';
-
-const links = [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Style Demonstration', href: '/demo' },
-    { label: 'API Demo', href: '/demo-api' },
-    { label: 'Form Demo', href: '/demo-form' },
-];
+import { ApiExample } from '../features/demo-api/pages/ApiExample';
+import { FormDemo } from '../features/demo-form/pages/FormDemo';
+import { Footer } from './components/Footer';
+import { Header } from './components/Header.js';
+import { UnderConstruction } from '../features/main-feature/pages/UnderConstruction.js';
 
 class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
     constructor(props: { children: React.ReactNode }) {
@@ -82,10 +74,16 @@ export const App = () => {
                     <main className="content">
                         <Routes>
                             <Route path="/" element={<Home />} />
+                            <Route path="/create-build" element={<UnderConstruction heading="Create Build" />} />
+                            <Route path="/update-build" element={<UnderConstruction heading="Update Build" />} />
+                            <Route path="/view-build" element={<UnderConstruction heading="View Build" />} />
+                            <Route path="/firmware-upload" element={<UnderConstruction heading="Firmware Upload" />} />
+                            <Route path="/firmware-bundle" element={<UnderConstruction heading="Firmware Bundle" />} />
+                            <Route path="/csv-upload" element={<UnderConstruction heading="CSV Upload" />} />
+                            <Route path="/server-status" element={<UnderConstruction heading="Server Status" />} />
+                            <Route path="/dhcp-table" element={<UnderConstruction heading="DHCP Table" />} />
+                            <Route path="/statistics" element={<UnderConstruction heading="Statistics" />} />
                             <Route path="/about" element={<About />} />
-                            <Route path="/demo" element={<StyleDemo />} />
-                            <Route path="/demo-api" element={<ApiExample />} />
-                            <Route path="/demo-form" element={<FormDemo />} />
                             <Route path="*" element={<Navigate to="/" replace />} />
                         </Routes>
                     </main>
@@ -93,56 +91,5 @@ export const App = () => {
                 </div>
             </Router>
         </ErrorBoundary>
-    );
-};
-
-const Header = () => {
-    const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-        return (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
-    });
-
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    }, [theme]);
-
-    const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-    };
-
-    return (
-        <header className="d-flex justify-content-between align-items-center p-1" style={{ height: '60px' }}>
-            <div className="d-flex align-items-center">
-                <a className="navbar-brand d-flex align-items-center" href="/">
-                    <img src={siteLogo} alt="Site Logo" className="me-2" style={{ height: '40px' }} />
-                    <span className="brand-name">GIC Application</span>
-                </a>
-                <HorizontalMenu brand="MyApp" logoSrc={siteLogo} logoAlt="Site Logo" links={links} />
-            </div>
-            <div className="d-flex align-items-center">
-                <div className="form-check form-switch me-3">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="themeSwitch"
-                        checked={theme === 'dark'}
-                        onChange={toggleTheme}
-                    />
-                    <label className="form-check-label" htmlFor="themeSwitch">
-                        Dark Mode
-                    </label>
-                </div>
-                <HamburgerMenu brand="MyApp" logoSrc={siteLogo} logoAlt="Site Logo" links={links} />
-            </div>
-        </header>
-    );
-};
-
-const Footer: React.FC = () => {
-    return (
-        <footer className="footer">
-            <img src={wwtLogo} alt="WWT Logo" className="footer-logo" />
-            <p>&copy; {new Date().getFullYear()} World Wide Technology. All Rights Reserved.</p>
-        </footer>
     );
 };

@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { PrimaryButton } from '../../../common/components/buttons';
-import {
-    DatalistSelect,
-    Form,
-    Input,
-    Select,
-    GroupedSelect,
-    RadioButtonGroup,
-    Password,
-} from '../../../common/components/form-components';
+import { Form } from '../../../common/components/form/Form';
+import { Input } from '../../../common/components/form/Input';
+import { Password } from '../../../common/components/form/Password';
+import { Select } from '../../../common/components/form/Select';
+import { DatalistSelect } from '../../../common/components/form/DatalistSelect';
+import { GroupedSelect } from '../../../common/components/form/GroupedSelect';
+import { RadioButtonGroup } from '../../../common/components/form/RadioButtonGroup';
 
 export const FormDemo = () => {
     const [formData, setFormData] = useState({
