@@ -1,132 +1,70 @@
-// IMPORTANT: Import Bootstrap's functions FIRST.
-// This ensures that all helper functions (e.g., lighten, darken, or custom Bootstrap functions)
-// are available before defining or overriding variables.
-// Skipping this step may cause errors if a variable relies on these functions.
+// Import Bootstrap's SCSS functions first
 @import "bootstrap/scss/functions";
 
-// Define Bootstrap SCSS variables with fixed hex codes for compilation
-// These variables are used internally by Bootstrap's SCSS mixins and functions.
-// DO NOT use `var(--custom-property)` here, as it will cause compilation errors.
-$white: #fff; // Primary white color
-$gray-100: #f8f9fa; // Light gray
-$gray-200: #e9ecef; // Light border gray
-$gray-300: #dee2e6; // Medium gray
-$gray-400: #ced4da; // Placeholder gray
-$gray-500: #adb5bd; // Muted text gray
-$gray-600: #868e96; // Secondary text gray
-$gray-700: #495057; // Default text gray
-$gray-800: #373a3c; // Darker text gray
-$gray-900: #212529; // Darkest text gray
-$black: #000; // Primary black color
-$blue: #0086ea; // Primary brand color
-$indigo: #6610f2; // Secondary indigo color
-$purple: #8212c4; // Secondary brand color
-$pink: #e83e8c; // Accent pink color
-$red: #ee282a; // Error state or danger color
-$orange: #f0ad4e; // Warning state color
-$yellow: #ffdd55; // Alert or highlight color
-$green: #0a8a3a; // Success state color
-$teal: #20c997; // Teal accent color
-$cyan: #9954BB; // Info state color
+// Define Sass variables
+$primary: #0086ea; // WWT Brand Color
+$secondary: #373a3c;
+$success: #0a8a3a; // Calculate complentry green to WWT Brand Colors
+$info: $primary;
+$warning: #ffdd55; // Calculate complentry light yellow to WWT Brand Colors
+$danger: #ee282a; // WWT Brand Color
+$light: #f8f9fa;
+$dark: #212529;
 
-// Map fixed SCSS variables to Bootstrap variables for internal use
-$primary: $blue; // Primary UI elements
-$secondary: $gray-800; // Secondary UI elements
-$success: $green; // Success notifications or states
-$info: $cyan; // Informational notifications
-$warning: $yellow; // Warning states
-$danger: $red; // Danger or error states
-$light: $gray-100; // Background light
-$dark: $gray-800; // Text or background dark
-
-$body-bg: $light; // Default body background
-$body-color: $dark; // Default body text color
-
-// Define CSS Custom Properties (runtime variables) for the default (light) theme
-// These variables allow runtime theming by referencing them in CSS styles.
+// Root-level CSS custom properties
 :root {
-  --white: #fff; // Primary white color
-  --gray-100: #f8f9fa; // Light gray
-  --gray-200: #e9ecef; // Light border gray
-  --gray-300: #dee2e6; // Medium gray
-  --gray-400: #ced4da; // Placeholder gray
-  --gray-500: #adb5bd; // Muted text gray
-  --gray-600: #868e96; // Secondary text gray
-  --gray-700: #495057; // Default text gray
-  --gray-800: #373a3c; // Darker text gray
-  --gray-900: #212529; // Darkest text gray
-  --black: #000; // Primary black color
-  --blue: #0086ea; // Primary brand color
-  --indigo: #6610f2; // Secondary indigo color
-  --purple: #8212c4; // Secondary brand color
-  --pink: #e83e8c; // Accent pink color
-  --red: #ee282a; // Error state or danger color
-  --orange: #f0ad4e; // Warning state color
-  --yellow: #ffdd55; // Alert or highlight color
-  --green: #0a8a3a; // Success state color
-  --teal: #20c997; // Teal accent color
-  --cyan: #9954BB; // Info state color
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --success: #{$success};
+  --info: #{$info};
+  --warning: #{$warning};
+  --danger: #{$danger};
+  --light: #{$light};
+  --dark: #{$dark};
 
-  // Custom properties for Bootstrap theme colors
-  --primary: var(--blue);
-  --secondary: var(--gray-800);
-  --success: var(--green);
-  --info: var(--cyan);
-  --warning: var(--yellow);
-  --danger: var(--red);
-  --light: var(--gray-100);
-  --dark: var(--gray-800);
-
-  --body-bg: var(--light); // Default light theme background
-  --body-color: var(--dark); // Default light theme text color
-  --bs-navbar-active-color: rgba(var(--white), 1); // Navbar hover state color
-  --navbar-dark-hover-color: rgba(var(--white), 1); // Navbar hover state color
-
-  --bs-navbar-color: black;
+  // Light Theme: Default
+  --body-bg: var(--light);
+  --body-color: var(--dark);
 }
 
-// Define CSS Custom Properties (runtime variables) for the dark theme
-// These variables allow runtime theming when `data-theme="dark"` is applied.
+// Toggle color and background color when [data-theme="dark"]
 [data-theme="dark"] {
-  --white: #f8f9fa; // Light text for dark backgrounds
-  --gray-100: #212529; // Background for dark theme
-  --gray-200: #373a3c;
-  --gray-300: #495057;
-  --gray-400: #868e96;
-  --gray-500: #adb5bd;
-  --gray-600: #ced4da;
-  --gray-700: #dee2e6;
-  --gray-800: #e9ecef;
-  --gray-900: #f8f9fa;
-  --black: #000;
-  --blue: #66b2ff; // Slightly lighter blue for dark backgrounds
-  --indigo: #9258f0; // Adjusted indigo for contrast
-  --purple: #ae59d6; // Adjusted purple for contrast
-  --pink: #ff6fae; // Adjusted pink for dark mode
-  --red: #ff4d4f; // Adjusted red for dark mode
-  --orange: #ffb84d; // Adjusted orange for dark mode
-  --yellow: #ffe066; // Adjusted yellow for dark mode
-  --green: #4caf50; // Adjusted green for dark mode
-  --teal: #3bc9db; // Adjusted teal for dark mode
-  --cyan: #9c88ff; // Adjusted cyan for dark mode
-
-  // Custom properties for Bootstrap theme colors
-  --primary: var(--blue);
-  --secondary: var(--gray-500);
-  --success: var(--green);
-  --info: var(--cyan);
-  --warning: var(--yellow);
-  --danger: var(--red);
-  --light: var(--gray-100);
-  --dark: var(--gray-900);
-
-  --body-bg: var(--gray-100); // Default dark theme background
-  --body-color: var(--gray-900); // Default dark theme text color
-  --navbar-dark-hover-color: rgba(var(--white), 0.8); // Navbar hover state color for dark theme
+  --body-bg: var(--dark);
+  --body-color: var(--light);
 }
 
-// IMPORTANT: Import the full Bootstrap SCSS file LAST.
-// This ensures that any customizations (e.g., variable overrides)
-// defined earlier in this file are applied when Bootstrap's styles are compiled.
-// If this import is placed before customizations, Bootstrap will use its default styles.
+// Import Bootstrap SCSS with these customizations
 @import "bootstrap/scss/bootstrap.scss";
+
+// Button customization using Sass variables
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: $light;
+
+  &:hover {
+    background-color: darken($primary, 10%);
+    border-color: darken($primary, 10%);
+  }
+
+  &:active {
+    background-color: darken($primary, 10%);
+    border-color: darken($primary, 10%);
+  }
+}
+
+.btn-secondary {
+  background-color: $secondary;
+  border-color: $secondary;
+  color: $light;
+
+  &:hover {
+    background-color: darken($secondary, 10%);
+    border-color: darken($secondary, 10%);
+  }
+
+  &:active {
+    background-color: darken($secondary, 10%);
+    border-color: darken($secondary, 10%);
+  }
+}

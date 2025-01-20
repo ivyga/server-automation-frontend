@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PrimaryButton, SecondaryButton } from '../../../common/components/buttons';
+import { PrimaryButton, SecondaryButton } from '../../../common/components/buttons/PrimaryButton';
 import { getUnitedStatesPopulations } from '../api/getUnitedStatesPopulations';
 import { PopulationData, UnitedStatesYearlyPopulation } from '../components/UnitedStatesYearlyPopulation';
 import { getStatePopulations, StatePopulation } from '../api/getStatePopulations';

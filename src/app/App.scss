@@ -120,33 +120,6 @@ h3 {
     color: var(--blue);
 }
 
-// Button styles
-.btn {
-    font-size: .85rem;
-    margin-right: 10px;
-    border-radius: 4px;
-}
-
-.btn-primary,
-.btn-secondary,
-.btn-success,
-.btn-danger {
-    /* We override Bootstrap's lighter backgrounds, so now we need white text for proper contrast */
-    color: white;
-}
-
-[data-theme="dark"] .btn-primary,
-[data-theme="dark"] .btn-secondary,
-[data-theme="dark"] .btn-success,
-[data-theme="dark"] .btn-danger,
-[data-theme="dark"] .btn-outline-secondary {
-    /* We override Bootstrap's lighter backgrounds, so now we need white text for proper contrast */
-    color: white;
-}
-
-[data-theme="light"] .btn-light {
-    border-color: #1a1a1a;
-}
 
 // Override Bootstrap's Form Elements
 .form-control,

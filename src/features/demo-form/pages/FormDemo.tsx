@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PrimaryButton } from '../../../common/components/buttons';
+import { PrimaryButton } from '../../../common/components/buttons/PrimaryButton';
 import { Form } from '../../../common/components/form/Form';
 import { Input } from '../../../common/components/form/Input';
 import { Password } from '../../../common/components/form/Password';

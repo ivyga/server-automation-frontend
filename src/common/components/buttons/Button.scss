@@ -1,0 +1,38 @@
+.btn {
+    font-size: 0.85rem;
+    margin-right: 10px;
+    border-radius: 4px;
+
+    // Default hover behavior
+    &:hover {
+        filter: brightness(85%);
+    }
+}
+
+button.btn.btn-primary,
+button.btn-secondary,
+button.btn-success,
+button.btn-danger {
+    color: white;
+}
+
+// Dark theme support
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .btn-secondary,
+[data-theme="dark"] .btn-success,
+[data-theme="dark"] .btn-danger {
+    color: white;
+
+    --bs-btn-hover-bg: #004085; // Dark hover background
+    --bs-btn-active-bg: #003366; // Dark active background
+}
+
+// Light theme adjustments
+[data-theme="light"] .btn-light {
+    border-color: #1a1a1a;
+
+    &:hover {
+        border-color: #000;
+        background-color: #f8f9fa;
+    }
+}
