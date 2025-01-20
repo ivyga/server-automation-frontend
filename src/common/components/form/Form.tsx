@@ -6,6 +6,8 @@ import { DatalistSelect } from './DatalistSelect';
 import { GroupedSelect } from './GroupedSelect';
 import { RadioButtonGroup } from './RadioButtonGroup';
 
+import './form.scss';
+
 // NOTE: We can also use Form from react-bootstrap.
 // https://react-bootstrap.netlify.app/docs/forms/form-control
 // Made our own Form to have a more contro, couple labels with inputs automatically, and gain a better understanding of React.

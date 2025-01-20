@@ -1,15 +1,9 @@
 import React from 'react';
 import { Alert } from '../../../common/components/alerts/Alert';
-import { PrimaryButton } from '../../../common/components/buttons/PrimaryButton';
-import { SecondaryButton } from '../../../common/components/buttons/SecondaryButton';
 
 export const Home: React.FC = () => {
     return (
         <div>
-            <button className="btn btn-primary">Test Button</button>
-
-            <PrimaryButton label="Test" />
-            <SecondaryButton label="Test2" />
             <h1>Server Provisioning Overview</h1>
             <Alert>
                 <p>Release v4.6.2 (1/1/2025)</p>

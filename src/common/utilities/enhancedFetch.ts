@@ -1,4 +1,4 @@
-import { displayError, displayWaiting, hideWaiting } from '../components/modals';
+import { displayError, displayWaiting, hideWaiting } from '../components/modals/modals';
 import { saveObjectToLocalStorage } from './localStoreageHelpers';
 
 /**

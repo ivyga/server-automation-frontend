@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Home } from '../features/main-feature/pages/Home';
 import { About } from '../features/main-feature/pages/About';
 import { StyleDemo } from '../features/main-feature/pages/StyleDemo';
-import { ErrorModal, WaitingModal, displayError } from '../common/components/modals';
+import { ErrorModal, WaitingModal, displayError } from '../common/components/modals/modals.js';
 
 // eslint-disable-next-line import/extensions
 import conf from '../conf/conf.js';
@@ -15,6 +15,7 @@ import { FormDemo } from '../features/demo-form/pages/FormDemo';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header.js';
 import { UnderConstruction } from '../features/main-feature/pages/UnderConstruction.js';
+import { CreateBuild } from '../features/main-feature/pages/CreateBuild.js';
 
 class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
     constructor(props: { children: React.ReactNode }) {
@@ -74,7 +75,7 @@ export const App = () => {
                     <main className="content">
                         <Routes>
                             <Route path="/" element={<Home />} />
-                            <Route path="/create-build" element={<UnderConstruction heading="Create Build" />} />
+                            <Route path="/create-build" element={<CreateBuild heading="Create Build" />} />
                             <Route path="/update-build" element={<UnderConstruction heading="Update Build" />} />
                             <Route path="/view-build" element={<UnderConstruction heading="View Build" />} />
                             <Route path="/firmware-upload" element={<UnderConstruction heading="Firmware Upload" />} />
