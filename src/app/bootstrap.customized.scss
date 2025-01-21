@@ -1,9 +1,15 @@
 // Import Bootstrap's SCSS functions first
 @import "bootstrap/scss/functions";
 
+// Import your custom color variables
 @import "../common/colors.scss";
 
-// Map root-level CSS custom properties for Sass Color variables.
+// Override Bootstrap's default Sass variables
+$input-font-size: 0.8rem;
+$input-padding-x: 0;
+$input-padding-y: 0;
+
+// Override Bootstrap's css variable and map to our color scheme
 :root {
   --primary: #{$primary};
   --secondary: #{$secondary};
@@ -17,6 +23,23 @@
   // Light Theme: Default
   --body-bg: var(--light);
   --body-color: var(--dark);
+
+  --bs-font-sans-serif: 'Arial' !important;
+  --bs-font-monospace: 'Courier New' !important;
+
+  // Override Bootstrap's global border-radius
+  --bs-border-radius: #{$radius} !important;
+
+  .btn {
+    --bs-btn-padding-x: #{$spacing};
+    --bs-btn-padding-y: #{$spacing-tight};
+    --bs-btn-font-size: 0.8rem;
+    --bs-btn-font-weight: 400;
+    --bs-btn-line-height: 1.5;
+    --bs-btn-border-width: var(--bs-border-width);
+    --bs-btn-border-radius: var(--bs-border-radius);
+  }
+
 }
 
 // Toggle color and background color when [data-theme="dark"]
@@ -34,11 +57,7 @@
   border-color: $primary;
   color: $light;
 
-  &:hover {
-    background-color: darken($primary, 10%);
-    border-color: darken($primary, 10%);
-  }
-
+  &:hover,
   &:active {
     background-color: darken($primary, 10%);
     border-color: darken($primary, 10%);
@@ -50,11 +69,7 @@
   border-color: $secondary;
   color: $light;
 
-  &:hover {
-    background-color: darken($secondary, 10%);
-    border-color: darken($secondary, 10%);
-  }
-
+  &:hover,
   &:active {
     background-color: darken($secondary, 10%);
     border-color: darken($secondary, 10%);

@@ -8,8 +8,14 @@ export interface DatalistSelectProps {
     onChange?: (_event: React.ChangeEvent<HTMLInputElement>) => void; // Do not directly set. This is set by Form Component when cloning.
 }
 
-export const DatalistSelect: React.FC<DatalistSelectProps> = ({ id, label, options, value = '', onChange }) => (
-    <div className="mb-3">
+export const DatalistSelect: React.FC<DatalistSelectProps> = ({
+    id,
+    label,
+    options,
+    value = '',
+    onChange = () => {},
+}) => (
+    <div className="form-group">
         <label htmlFor={id} className="form-label">
             {label}
         </label>

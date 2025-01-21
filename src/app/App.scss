@@ -49,8 +49,9 @@ header {
         padding-left: 10px;
         background-color: white;
         border: 1px solid gray;
-        border-radius: 6px;
+        border-radius: $radius;
         width: 160px;
+        z-index: 1000;
 
         .nav-link {
             color: black;
@@ -122,9 +123,9 @@ h3 {
 
 
 // Override Bootstrap's Form Elements
-.form-control,
-.form-select {
-    font-size: 1rem;
-    padding: 5px 5px;
-    line-height: 1;
-}
+// .form-control,
+// .form-select {
+//     font-size: 1rem;
+//     padding: 5px 5px;
+//     line-height: 1;
+// }

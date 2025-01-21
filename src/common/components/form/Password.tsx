@@ -7,7 +7,7 @@ export interface PasswordProps {
     onChange?: (_event: React.ChangeEvent<HTMLInputElement>) => void; // Do not directly set. This is set by Form Component when cloning.
 }
 
-export const Password: React.FC<PasswordProps> = ({ id, label, value = '', onChange }) => {
+export const Password: React.FC<PasswordProps> = ({ id, label, value = '', onChange = () => {} }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => {
@@ -15,7 +15,7 @@ export const Password: React.FC<PasswordProps> = ({ id, label, value = '', onCha
     };
 
     return (
-        <div className="mb-3">
+        <div className="form-group">
             <label htmlFor={id} className="form-label">
                 {label}
             </label>
@@ -27,7 +27,7 @@ export const Password: React.FC<PasswordProps> = ({ id, label, value = '', onCha
                     value={value}
                     onChange={onChange} // Make sure to use the onChange passed from Form
                 />
-                <button type="button" className="btn btn-outline-secondary" onClick={toggleVisibility}>
+                <button type="button" className="btn btn-secondary" onClick={toggleVisibility}>
                     {isVisible ? 'Hide' : 'Show'}
                 </button>
             </div>

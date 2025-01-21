@@ -11,8 +11,8 @@ export interface GroupedSelectProps {
     onChange?: (_event: React.ChangeEvent<HTMLSelectElement>) => void; // Do not directly set. This is set by Form Component when cloning.
 }
 
-export const GroupedSelect: React.FC<GroupedSelectProps> = ({ id, label, groups, value = '', onChange }) => (
-    <div className="mb-3">
+export const GroupedSelect: React.FC<GroupedSelectProps> = ({ id, label, groups, value = '', onChange = () => {} }) => (
+    <div className="form-group">
         <label htmlFor={id} className="form-label">
             {label}
         </label>

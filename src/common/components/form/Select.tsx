@@ -8,10 +8,10 @@ export interface SelectProps {
     onChange?: (_event: React.ChangeEvent<HTMLSelectElement>) => void; // Do not directly set. This is set by Form Component when cloning.
 }
 
-export const Select: React.FC<SelectProps> = ({ id, label, options, value = '', onChange }) => {
+export const Select: React.FC<SelectProps> = ({ id, label, options, value = '', onChange = () => {} }) => {
     const optionsWithNotSelected = value ? options : [{ label: '', value: '' }, ...options];
     return (
-        <div className="mb-3">
+        <div className="form-group">
             <label htmlFor={id} className="form-label">
                 {label}
             </label>

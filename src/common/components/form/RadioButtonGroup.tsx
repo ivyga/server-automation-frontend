@@ -9,7 +9,7 @@ export interface RadioButtonGroupProps {
 }
 
 export const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({ id, label, options, value = '', onChange }) => (
-    <div className="mb-3">
+    <div className="form-group">
         <label className="form-label">{label}</label>
         <div>
             {options.map((option) => (
