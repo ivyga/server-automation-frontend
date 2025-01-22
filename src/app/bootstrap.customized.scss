@@ -29,6 +29,7 @@ $input-padding-y: 0;
 
   // Override Bootstrap's global border-radius
   --bs-border-radius: #{$radius} !important;
+  --bs-gutter-x: #{$radius} !important;
 
   .btn {
     --bs-btn-padding-x: #{$spacing};

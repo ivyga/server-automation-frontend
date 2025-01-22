@@ -11,7 +11,7 @@ $right-column-width: 300px;
 
     .form-layout {
         display: flex;
-        gap: 2rem; // Space between left and right columns
+        gap: 1rem; // Space between left and right columns
     }
 
     .form-column {
@@ -70,6 +70,6 @@ $right-column-width: 300px;
         padding: 0;
         padding-left: 5px;
         margin: 0;
-        font-size: .9rem;
+        font-size: .8rem;
     }
 }

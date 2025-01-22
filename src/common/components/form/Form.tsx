@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode, ChangeEvent, FormEvent } from 'react';
 import { Input } from './Input';
 import { Password } from './Password';
 import { Select } from './Select';
@@ -7,56 +7,61 @@ import { GroupedSelect } from './GroupedSelect';
 import { RadioButtonGroup } from './RadioButtonGroup';
 
 import './form.scss';
+import { Checkbox } from './Checkbox';
 
-// NOTE: We can also use Form from react-bootstrap.
-// https://react-bootstrap.netlify.app/docs/forms/form-control
-// Made our own Form to have a more contro, couple labels with inputs automatically, and gain a better understanding of React.
-export const Form = ({
-    children,
-    onSubmit,
-    initialFormData,
-    className = 'default',
-}: {
-    children: React.ReactNode;
-    onSubmit: (_formData: { [key: string]: string }) => void;
-    initialFormData: { [key: string]: string };
+const formElementTypes = [Input, Password, Select, DatalistSelect, GroupedSelect, RadioButtonGroup, Checkbox] as const;
+
+interface FormProps {
+    children: ReactNode;
+    // eslint-disable-next-line no-unused-vars
+    onSubmit: (formData: { [key: string]: string | boolean }) => void;
+    initialFormData: { [key: string]: string | boolean };
     className?: string;
-}) => {
+}
+
+export const Form: React.FC<FormProps> = ({ children, onSubmit, initialFormData, className = 'default' }) => {
     const [formData, setFormData] = useState(initialFormData);
 
-    const onChange = (event: React.FormEvent) => {
-        let key = event.target.id;
-        let value = event.target.value;
+    const onChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        let key = event.target.name;
+        let value: string | boolean = event.target.value;
+
+        if (event.target.type === 'checkbox') {
+            if (event.target.checked) {
+                value = true;
+            } else {
+                value = false;
+            }
+        }
+
         if (event.target.id.startsWith('radio-')) {
-            const parts = event.target.id.split('-');
+            const parts = event.target.name.split('-');
             key = parts[1];
             value = parts[2];
         }
+
         setFormData((prevState) => ({
             ...prevState,
             [key]: value,
         }));
     };
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault(); // Prevent page reload on form submission
         onSubmit(formData); // Call the onSubmit callback with the formData
     };
 
-    const cloneWithProps = (child: any) => {
+    const cloneWithProps = (child: ReactNode): ReactNode => {
         if (React.isValidElement(child)) {
-            // Check if the child's type is one of the form elements
             const childType = child.type;
-            const formElementTypes = [Input, Password, Select, DatalistSelect, GroupedSelect, RadioButtonGroup];
-
             if (formElementTypes.includes(childType)) {
+                const childProps = child.props as { name: string };
                 return React.cloneElement(child, {
-                    value: formData[child.props.id] ?? '',
+                    value: formData[childProps.name] ?? '',
                     onChange,
                 });
             }
 
-            // If the child has children, recursively clone them
             if (child.props.children) {
                 return React.cloneElement(child, {
                     children: React.Children.map(child.props.children, cloneWithProps),

@@ -7,14 +7,16 @@ import { Select } from '../../../common/components/form/Select';
 import { Password } from '../../../common/components/form/Password';
 
 import './CreateBuild.scss';
-import { ListToList } from '../components/ListToLIst';
+import { getInitialServices, ListToList, Service } from '../components/ListToLIst';
 import { SecondaryButton } from '../../../common/components/buttons/SecondaryButton';
+import { PrimaryButton } from '../../../common/components/buttons/PrimaryButton';
 
 export interface CreateBuildProps {
     heading: string;
 }
 
 export const CreateBuild: React.FC<CreateBuildProps> = () => {
+    const [services, setServices] = useState(getInitialServices());
     const [formData, setFormData] = useState({
         created_by: '',
         customer_name: '',
@@ -29,6 +31,11 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
 
     const handleSubmit = (data: any) => {
         console.log('Form submitted:', data);
+        console.log({ services });
+    };
+
+    const onServicesChange = (updatedServices: Record<string, Service>) => {
+        setServices(updatedServices);
     };
 
     return (
@@ -37,20 +44,20 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                 <div className="form-column">
                     <fieldset>
                         <legend>Build Details</legend>
-                        <Input id="created_by" label="Engineer Name:" />
+                        <Input name="created_by" label="Engineer Name:" />
                         <DatalistSelect
-                            id="customer_name"
+                            name="customer_name"
                             label="Customer Name:"
                             options={['Customer A', 'Customer B']} // Example options
                         />
                         <DatalistSelect
-                            id="project_name"
+                            name="project_name"
                             label="Project Name:"
                             options={['Project X', 'Project Y']} // Example options
                         />
-                        <Input id="build_name" label="Build Name:" />
+                        <Input name="build_name" label="Build Name:" />
                         <Select
-                            id="device_oem"
+                            name="device_oem"
                             label="OEM:"
                             options={[
                                 { value: 'oem1', label: 'OEM 1' },
@@ -61,28 +68,30 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
 
                     <fieldset>
                         <legend>ETO Device</legend>
-                        <Input id="serial_number" label="Serial Number:" />
-                        <Input id="ip_address" label="IP Address:" />
-                        <Input id="user_login" label="User Login:" />
-                        <Password id="password" label="Password:" />
+                        <Input name="serial_number" label="Serial Number:" />
+                        <Input name="ip_address" label="IP Address:" />
+                        <Input name="user_login" label="User Login:" />
+                        <Password name="password" label="Password:" />
                     </fieldset>
                 </div>
 
                 <div className="form-column">
                     <fieldset>
                         <legend>Services</legend>
-                        <ListToList></ListToList>
+                        <ListToList services={services} onChange={onServicesChange} />
                     </fieldset>
                 </div>
             </div>
-            <div className="d-flex justify-content-end">
+            {
+                // TODO: Button Group to center or right buttons with the correct spacing
+                // TODO: Reset Button
+            }
+            <div className="d-flex justify-content-end mt-2">
                 <SecondaryButton onClick={() => window.history.back()} label="Cancel" />
-                <button type="reset" className="btn btn-secondary">
+                <button type="reset" className="btn btn-secondary" style={{ marginLeft: '.5rem' }}>
                     Reset
                 </button>
-                <button type="submit" className="btn btn-primary">
-                    Submit
-                </button>
+                <PrimaryButton type="submit" onClick={() => {}} label="Submit" style={{ marginLeft: '.5rem' }} />
             </div>
         </Form>
     );

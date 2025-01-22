@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface GroupedSelectProps {
-    id: string;
+    name: string;
     label: string;
     groups: {
         label: string;
@@ -11,13 +11,20 @@ export interface GroupedSelectProps {
     onChange?: (_event: React.ChangeEvent<HTMLSelectElement>) => void; // Do not directly set. This is set by Form Component when cloning.
 }
 
-export const GroupedSelect: React.FC<GroupedSelectProps> = ({ id, label, groups, value = '', onChange = () => {} }) => (
+export const GroupedSelect: React.FC<GroupedSelectProps> = ({
+    name,
+    label,
+    groups,
+    value = '',
+    onChange = () => {},
+}) => (
     <div className="form-group">
-        <label htmlFor={id} className="form-label">
+        <label htmlFor={name} className="form-label">
             {label}
         </label>
         <select
-            id={id}
+            id={name}
+            name={name}
             className="form-select"
             value={value}
             onChange={onChange} // Use the onChange passed from Form

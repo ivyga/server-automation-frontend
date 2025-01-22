@@ -51,7 +51,7 @@ export const FormDemo = () => {
                         options={['Apple', 'Banana', 'Cherry', 'Date']}
                     />
                     <GroupedSelect
-                        id="groupChoice"
+                        name="groupChoice"
                         label="Grouped Choice"
                         groups={[
                             {

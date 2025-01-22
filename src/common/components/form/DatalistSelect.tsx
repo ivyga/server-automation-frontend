@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface DatalistSelectProps {
-    id: string;
+    name: string;
     label: string;
     options: string[]; // List of values for the datalist
     value?: string; // Do not directly set. This is set by Form Component when cloning.
@@ -9,25 +9,26 @@ export interface DatalistSelectProps {
 }
 
 export const DatalistSelect: React.FC<DatalistSelectProps> = ({
-    id,
+    name,
     label,
     options,
     value = '',
     onChange = () => {},
 }) => (
     <div className="form-group">
-        <label htmlFor={id} className="form-label">
+        <label htmlFor={name} className="form-label">
             {label}
         </label>
         <input
             type="text"
             className="form-control"
-            id={id}
+            id={name}
+            name={name}
             value={value}
             onChange={onChange} // Use the onChange passed from Form
-            list={`${id}-datalist`}
+            list={`${name}-datalist`}
         />
-        <datalist id={`${id}-datalist`}>
+        <datalist id={`${name}-datalist`}>
             {options.map((option, index) => (
                 <option key={index} value={option} />
             ))}
