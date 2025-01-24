@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import siteLogo from '../../images/site-logo.png';
 import { NavBar } from './NavBar';
+import Nav from './Nav';
 
 export const Header = () => {
     const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -16,30 +17,17 @@ export const Header = () => {
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     };
 
+    const navLinks = [
+        { label: 'Home', href: '/' },
+        { label: 'About', href: '/about' },
+        { label: 'Services', href: '/services' },
+        { label: 'Contact', href: '/contact' },
+    ];
+
     return (
-        <header className="d-flex justify-content-between align-items-center p-1" style={{ height: '60px' }}>
-            <div className="d-flex align-items-center">
-                <a className="navbar-brand d-flex align-items-center" href="/">
-                    <img src={siteLogo} alt="Site Logo" className="me-2" style={{ height: '40px' }} />
-                    <span className="brand-name">Server Provisioning&nbsp;&nbsp;</span>
-                </a>
-                <NavBar />
-            </div>
-            <div className="d-flex align-items-center">
-                <div className="form-check form-switch me-3">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="themeSwitch"
-                        checked={theme === 'dark'}
-                        onChange={toggleTheme}
-                    />
-                    <label className="form-check-label" htmlFor="themeSwitch">
-                        Dark Mode
-                    </label>
-                </div>
-                <NavBar isForSmallScreens={true} />
-            </div>
+        <header>
+            <Nav links={navLinks} brandName="MySite" />
+            <span>hello world</span>
         </header>
     );
 };

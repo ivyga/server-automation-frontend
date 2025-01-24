@@ -1,7 +1,5 @@
 import wwtLogo from '../../images/wwt-logo.png';
 
-import './Footer.scss';
-
 export const Footer: React.FC = () => {
     return (
         <footer className="footer">

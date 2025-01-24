@@ -1,3 +1,8 @@
+@import "tailwindcss";
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+/*
 @import './bootstrap.customized.scss';
 
 // IMPORTANT: Styles here generally affect the overall application layout and "stock" components.
@@ -15,13 +20,12 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* Ensure it spans the full viewport height */
 }
 
 // Header and navbar styles
 header {
     background-color: black !important;
-    /* Soft black background */
+
     color: #f8f9fa;
 
     .brand-name {
@@ -102,7 +106,6 @@ header {
 // Content styles
 .content {
     padding: 20px;
-    /* Allow content to grow */
     flex: 1;
 }
 
@@ -129,3 +132,5 @@ h3 {
 //     padding: 5px 5px;
 //     line-height: 1;
 // }
+
+*/

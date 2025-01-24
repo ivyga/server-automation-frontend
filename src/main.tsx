@@ -5,6 +5,8 @@ import { App } from './app/App';
 import { ErrorModal } from './common/components/modals/ErrorModal';
 import { WaitingModal } from './common/components/modals/modals';
 
+import './app/App.css';
+
 // Render the React app
 createRoot(document.getElementById('root')!).render(
     <StrictMode>

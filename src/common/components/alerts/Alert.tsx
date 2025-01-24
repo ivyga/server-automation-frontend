@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import './Alert.scss';
+// import './Alert.css';
 
 // NOTE: impoorting react-bootstrap's Alert is an alternative.
 // https://react-bootstrap.netlify.app/docs/components/alerts/

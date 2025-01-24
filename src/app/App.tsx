@@ -8,9 +8,11 @@ import { DataProvider } from './DataProvider';
 import { Header } from './components/Header.js';
 import { Footer } from './components/Footer';
 import { ErrorBoundary } from './ErrorBoundary.js';
+import { Button } from '../common/components/buttons/Button.js';
 
-import './App.scss';
-
+// export const App = () => {
+//     return <Button label="TEST" variant=""></Button>;
+// };
 export const App = () => {
     return (
         <>
