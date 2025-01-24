@@ -3,6 +3,7 @@
 $left-column-width: 130px;
 $right-column-width: 300px;
 
+// TODO: Make a media query for really small devices and place services and buttons below ETO Device
 .create-form {
     width: 100%;
     max-width: 1000px;
@@ -63,7 +64,7 @@ $right-column-width: 300px;
 
     .list-group {
         display: inline-block;
-        min-height: 403px;
+        min-height: 328px;
     }
 
     .list-group-item {
@@ -71,5 +72,25 @@ $right-column-width: 300px;
         padding-left: 5px;
         margin: 0;
         font-size: .8rem;
+    }
+
+    .card-layout {
+        display: flex;
+        flex-wrap: wrap; // Allow wrapping of cards to the next row
+        gap: 1rem; // Add spacing between cards
+        justify-content: flex-start; // Align items to the start (left-to-right layout)
+    }
+
+    .card-with-width {
+        flex: 1 1 calc(50% - 1rem); // Each card takes up 50% of the container width minus the gap
+        max-width: calc(50% - 1rem); // Ensure cards stay within the calculated width
+        box-sizing: border-box; // Include padding and border in width calculations
+    }
+
+    @media (max-width: 768px) {
+        .card-with-width {
+            flex: 1 1 100%; // On smaller devices, make cards full-width
+            max-width: 100%; // Ensure full width on smaller devices
+        }
     }
 }

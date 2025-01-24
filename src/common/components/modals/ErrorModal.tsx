@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 import { Modal } from './modals';
 
-let errorModalSetState: React.Dispatch<React.SetStateAction<{ title: string; body: string; isOpen: boolean }>> | null =
-    null;
+let setErrorModalSetState: React.Dispatch<
+    React.SetStateAction<{ title: string; body: string; isOpen: boolean }>
+> | null = null;
 
 // TODO: Add last fetch and stack trace to aid troubleshooting
 export const ErrorModal: React.FC = () => {
     const [modalState, setModalState] = useState({ title: '', body: '', isOpen: false });
-    errorModalSetState = setModalState;
+    setErrorModalSetState = setModalState;
 
     return (
         <Modal
@@ -21,8 +22,8 @@ export const ErrorModal: React.FC = () => {
 };
 
 export const displayError = (title: string, body: string) => {
-    if (errorModalSetState) {
-        errorModalSetState({ title, body, isOpen: true });
+    if (setErrorModalSetState) {
+        setErrorModalSetState({ title, body, isOpen: true });
     } else {
         console.error('ErrorModal is not mounted.');
     }
