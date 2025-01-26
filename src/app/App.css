@@ -5,6 +5,7 @@ IMPORTANT: Import order matters.
 @import 'tailwindcss';
 @tailwind utilities;
 
+/* Base styles for light and dark themes */
 body {
     color: #212529;
     background-color: #e9ecef;
@@ -15,12 +16,14 @@ body.dark {
     background-color: #212529;
 }
 
+/* Shared header and footer styles */
 header,
 footer {
     color: #f8f9fa;
     background-color: #1a1a1a;
 }
 
+/* Footer styles */
 footer {
     text-align: center;
     padding: 1rem;
@@ -28,6 +31,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 footer img {
@@ -36,7 +40,7 @@ footer img {
     margin-bottom: 0.5rem;
 }
 
-/* Make the body and html take up the full height */
+/* Ensure the body and root take up the full height */
 html,
 body {
     height: 100%;
@@ -45,18 +49,8 @@ body {
     flex-direction: column;
 }
 
-/* Ensure the root element takes up the full height minus the header and footer */
 #root {
     display: flex;
     flex-direction: column;
     flex: 1; /* Grow to fill the available space */
-}
-
-/* Footer styles */
-footer.footer {
-    background-color: #1a1a1a; /* Example footer background color */
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-    flex-shrink: 0; /* Prevent shrinking */
 }

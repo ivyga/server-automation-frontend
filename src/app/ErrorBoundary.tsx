@@ -25,12 +25,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
         };
     }
 
+    // eslint-disable-next-line class-methods-use-this
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-        // Log error details for debugging purposes
+        // eslint-disable-next-line no-console
         console.error('ErrorBoundary caught an error:', error, errorInfo);
     }
 
     render() {
+        // TODO: Revisit this ErrorBoundary stuff.
         if (this.state.hasError) {
             return (
                 <div style={{ padding: '2rem', textAlign: 'center' }}>

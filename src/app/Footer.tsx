@@ -1,4 +1,4 @@
-import wwtLogo from '../../images/wwt-logo.png';
+import wwtLogo from '../images/wwt-logo.png';
 
 export const Footer: React.FC = () => {
     return (

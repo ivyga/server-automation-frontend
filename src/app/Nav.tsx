@@ -1,8 +1,9 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, FC } from 'react';
 
 export interface NavLink {
     label: string;
     href?: string;
+    component?: FC<any>;
     sublinks?: NavLink[];
 }
 
@@ -77,8 +78,7 @@ export const Nav: React.FC<NavProps> = ({ links, brandName, siteLogo = null, chi
                     {/* Children */}
                     <div className="hidden md:block">{children}</div>
 
-                    {/* Hamburger Icon */}
-                    {/* Hamburger Icon */}
+                    {/* "Hamburger" Icon */}
                     <button className="md:hidden focus:outline-none" onClick={toggleMenu}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

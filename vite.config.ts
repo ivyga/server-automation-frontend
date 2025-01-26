@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   server: {
-    port: 3000, // Set the desired port number
+    port: 3000,
   },
   plugins: [react(),tailwindcss()],
   build: {
