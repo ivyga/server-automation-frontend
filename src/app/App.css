@@ -1,136 +1,62 @@
-@import "tailwindcss";
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
 /*
-@import './bootstrap.customized.scss';
+IMPORTANT: Import order matters.
+*/
+@import '@wwtdev/bsds-css/dist/wwt-bsds.min.css';
+@import 'tailwindcss';
+@tailwind utilities;
 
-// IMPORTANT: Styles here generally affect the overall application layout and "stock" components.
-// Do not clutter this sheet with things that are specific to custom components unique to portions of the application.
-// Instead, create an "scss" file as needed for the component.
-
-// Global styles
 body {
-    background-color: var(--body-bg);
-    color: var(--body-color);
-    transition: background-color 0.3s ease, color 0.3s ease; // Smooth theme switching
+    color: #212529;
+    background-color: #e9ecef;
 }
 
-.app-container {
+body.dark {
+    color: #e9ecef;
+    background-color: #212529;
+}
+
+header,
+footer {
+    color: #f8f9fa;
+    background-color: #1a1a1a;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer img {
+    height: 50px;
+    width: auto;
+    margin-bottom: 0.5rem;
+}
+
+/* Make the body and html take up the full height */
+html,
+body {
+    height: 100%;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
-// Header and navbar styles
-header {
-    background-color: black !important;
-
-    color: #f8f9fa;
-
-    .brand-name {
-        font-size: 1.5em;
-    }
-
-    nav.app-nav-bar.navbar.navbar-expand-lg.navbar-light.bg-light {
-        --bs-light-rgb: 0, 0, 0; // Change to black
-        background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)); // Use the updated variable
-    }
-
-    nav.app-nav-hamburger.navbar.navbar-expand-lg.navbar-light.bg-light {
-        --bs-light-rgb: 0, 0, 0; // Change to black
-        background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)); // Use the updated variable
-    }
-
-    .navbar-toggler-icon {
-        background-color: white;
-    }
-
-    nav.app-nav-hamburger .navbar-nav {
-        position: absolute;
-        top: calc(100% - 7px);
-        left: -115px;
-        padding-left: 10px;
-        background-color: white;
-        border: 1px solid gray;
-        border-radius: $radius;
-        width: 160px;
-        z-index: 1000;
-
-        .nav-link {
-            color: black;
-        }
-
-        .dropdown-menu[data-bs-popper] {
-            position: absolute;
-            left: -25px;
-            background-color: white;
-        }
-
-    }
-
-    header nav.app-nav-hamburger .navbar-nav .nav-link.active,
-    header .navbar-nav .nav-link.show {
-        color: black;
-    }
-
-    @media (max-width: 991.98px) {
-        nav.app-nav-bar {
-            display: none;
-        }
-    }
-
-    @media (min-width: 991.99px) {
-        nav.app-nav-hamburger {
-            display: none;
-            background-color: black;
-        }
-    }
-
-    .navbar-nav .nav-link.active,
-    .navbar-nav .nav-link.show {
-        color: white;
-    }
-
-    nav.app-nav-bar .nav-link {
-        color: white;
-    }
+/* Ensure the root element takes up the full height minus the header and footer */
+#root {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Grow to fill the available space */
 }
 
-[data-theme="dark"] {
-    .modal-dialog {
-        color: black;
-    }
+/* Footer styles */
+footer.footer {
+    background-color: #1a1a1a; /* Example footer background color */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    flex-shrink: 0; /* Prevent shrinking */
 }
-
-// Content styles
-.content {
-    padding: 20px;
-    flex: 1;
-}
-
-// Typography
-h1 {
-    font-size: 1.5rem;
-}
-
-h2 {
-    font-size: 1.3rem;
-    color: var(--purple);
-}
-
-h3 {
-    font-size: 1.1rem;
-    color: var(--blue);
-}
-
-
-// Override Bootstrap's Form Elements
-// .form-control,
-// .form-select {
-//     font-size: 1rem;
-//     padding: 5px 5px;
-//     line-height: 1;
-// }
-
-*/

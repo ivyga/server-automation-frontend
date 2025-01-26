@@ -8,6 +8,5 @@ export interface SecondaryButtonProps extends React.ButtonHTMLAttributes<HTMLBut
 }
 
 export const SecondaryButton: React.FC<SecondaryButtonProps> = ({ label, ...props }) => {
-    const adjustedProps = { ...props, label, variant: 'secondary' };
-    return <Button {...adjustedProps} />;
+    return <Button {...props} label={label} variant="secondary" />;
 };

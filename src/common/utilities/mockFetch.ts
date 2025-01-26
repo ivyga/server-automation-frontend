@@ -134,7 +134,6 @@ export const mockFetch = async (
       ok: true,
       status: 200,
       json: async () => mockResponses[matchedRoute],
-      clone: () => { json: async () => mockResponses[matchedRoute]},
     };
   }
 

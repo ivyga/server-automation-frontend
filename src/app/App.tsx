@@ -8,52 +8,42 @@ import { DataProvider } from './DataProvider';
 import { Header } from './components/Header.js';
 import { Footer } from './components/Footer';
 import { ErrorBoundary } from './ErrorBoundary.js';
-import { Button } from '../common/components/buttons/Button.js';
 
-// export const App = () => {
-//     return <Button label="TEST" variant=""></Button>;
-// };
+import './App.css';
+
 export const App = () => {
     return (
-        <>
-            <div className="app-container">
-                <Header />
-                <main className="content">
-                    <ErrorBoundary>
-                        <Router>
-                            <DataProvider>
-                                <Routes>
-                                    <Route path="/" element={<Home />} />
-                                    <Route path="/create-build" element={<CreateBuild heading="Create Build" />} />
-                                    <Route
-                                        path="/update-build"
-                                        element={<UnderConstruction heading="Update Build" />}
-                                    />
-                                    <Route path="/view-build" element={<UnderConstruction heading="View Build" />} />
-                                    <Route
-                                        path="/firmware-upload"
-                                        element={<UnderConstruction heading="Firmware Upload" />}
-                                    />
-                                    <Route
-                                        path="/firmware-bundle"
-                                        element={<UnderConstruction heading="Firmware Bundle" />}
-                                    />
-                                    <Route path="/csv-upload" element={<UnderConstruction heading="CSV Upload" />} />
-                                    <Route
-                                        path="/server-status"
-                                        element={<UnderConstruction heading="Server Status" />}
-                                    />
-                                    <Route path="/dhcp-table" element={<UnderConstruction heading="DHCP Table" />} />
-                                    <Route path="/statistics" element={<UnderConstruction heading="Statistics" />} />
-                                    <Route path="/about" element={<About />} />
-                                    <Route path="*" element={<Navigate to="/" replace />} />
-                                </Routes>
-                            </DataProvider>
-                        </Router>
-                    </ErrorBoundary>
-                </main>
-                <Footer />
-            </div>
-        </>
+        <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-1 p-4">
+                <ErrorBoundary>
+                    <Router>
+                        <DataProvider>
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/create-build" element={<CreateBuild heading="Create Build" />} />
+                                <Route path="/update-build" element={<UnderConstruction heading="Update Build" />} />
+                                <Route path="/view-build" element={<UnderConstruction heading="View Build" />} />
+                                <Route
+                                    path="/firmware-upload"
+                                    element={<UnderConstruction heading="Firmware Upload" />}
+                                />
+                                <Route
+                                    path="/firmware-bundle"
+                                    element={<UnderConstruction heading="Firmware Bundle" />}
+                                />
+                                <Route path="/csv-upload" element={<UnderConstruction heading="CSV Upload" />} />
+                                <Route path="/server-status" element={<UnderConstruction heading="Server Status" />} />
+                                <Route path="/dhcp-table" element={<UnderConstruction heading="DHCP Table" />} />
+                                <Route path="/statistics" element={<UnderConstruction heading="Statistics" />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="*" element={<Navigate to="/" replace />} />
+                            </Routes>
+                        </DataProvider>
+                    </Router>
+                </ErrorBoundary>
+            </main>
+            <Footer />
+        </div>
     );
 };

@@ -8,6 +8,5 @@ export interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButto
 }
 
 export const PrimaryButton: React.FC<PrimaryButtonProps> = ({ label, ...props }) => {
-    const adjustedProps = { ...props, label, variant: 'primary' };
-    return <Button {...adjustedProps} />;
+    return <Button {...props} label={label} variant="primary" />;
 };

@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { enhancedFetch } from '../common/utilities/enhancedFetch';
 import { getBackendUrl } from '../common/utilities/getBackendUrl';
-import { displayError } from '../common/components/modals/ErrorModal';
 
 interface DataContextProps {
     customers: string[];

@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 // TODO: Use camelCase and adapt to snake_case somewhere, examine feasibility of copied endpoints
-import React, { useState } from 'react';
+import React from 'react';
 // import Card from 'react-bootstrap/Card';
 // import ButtonGroup from 'react-bootstrap/ButtonGroup';
 // import Button from 'react-bootstrap/Button';

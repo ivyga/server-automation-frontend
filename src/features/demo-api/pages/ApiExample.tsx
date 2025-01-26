@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { PrimaryButton, SecondaryButton } from '../../../common/components/buttons/PrimaryButton';
+import { PrimaryButton } from '../../../common/components/buttons/PrimaryButton';
 import { getUnitedStatesPopulations } from '../api/getUnitedStatesPopulations';
 import { PopulationData, UnitedStatesYearlyPopulation } from '../components/UnitedStatesYearlyPopulation';
 import { getStatePopulations, StatePopulation } from '../api/getStatePopulations';
 import { StatesPopulation } from '../components/StatesPopulation';
+import { SecondaryButton } from '../../../common/components/buttons/SecondaryButton';
 
 export const ApiExample: React.FC = () => {
     const [data, setData] = useState<PopulationData[] | StatePopulation[] | null>(null);

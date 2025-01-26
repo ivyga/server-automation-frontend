@@ -32,8 +32,7 @@ export const enhancedFetch = async (
 
     if(conf.shouldMockBackend) {
       const mock = await mockFetch(url);
-      // TODO: Fix type warning
-      return mock;
+      return mock as Response;
     }
     const response = await fetch(url, options);
     try {
