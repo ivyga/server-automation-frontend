@@ -10,3 +10,6 @@ dist
 
 # conf.js will differ per deployment mechanism so it should not be in source.
 src/conf/conf.js
+
+# mac created file
+.DS_Store

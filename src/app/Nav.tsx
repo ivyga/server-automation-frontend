@@ -27,50 +27,51 @@ export const Nav: React.FC<NavProps> = ({ links, brandName, siteLogo = null, chi
     };
 
     return (
-        <nav className="shadow-md p-4">
+        <nav className="shadow-md px-2 py-4">
             <div className="flex items-center justify-between px-4 w-full">
-                {/* Brand Logo and Name */}
-                <div className="flex items-center space-x-2">
-                    {siteLogo && <img src={siteLogo} alt="Site Logo" className="h-10 w-auto" />}
-                    <a href="/" className="text-lg font-bold hover:underline">
-                        {brandName}
-                    </a>
-                </div>
-
-                {/* Navigation Links */}
-                <div className="hidden md:flex items-center space-x-4">
-                    <ul className="flex space-x-4">
-                        {links.map((link, index) => (
-                            <li key={index} className="relative group">
-                                <a
-                                    href={link.href || '#'}
-                                    className="hover:text-gray-300 transition-colors"
-                                    onClick={(e) => {
-                                        if (link.sublinks) {
-                                            e.preventDefault();
-                                            toggleSublinks(index);
-                                        }
-                                    }}
-                                >
-                                    {link.label}
-                                </a>
-                                {link.sublinks && (
-                                    <ul className="hidden group-hover:block absolute bg-black text-white shadow-md rounded mt-2 space-y-2 p-4 w-64">
-                                        {link.sublinks.map((sublink, subIndex) => (
-                                            <li key={subIndex} className="p-2">
-                                                <a
-                                                    href={sublink.href}
-                                                    className="block hover:text-gray-300 transition-colors"
-                                                >
-                                                    {sublink.label}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
+                {/* Brand Logo and Navigation Links */}
+                <div className="flex items-center space-x-8">
+                    <div className="flex items-center space-x-2">
+                        {siteLogo && <img src={siteLogo} alt="Site Logo" className="h-10 w-auto" />}
+                        <a href="/" className="text-lg font-bold hover:underline whitespace-nowrap">
+                            {brandName}
+                        </a>
+                    </div>
+                    {/* Navigation Links */}
+                    <div className="hidden md:flex items-center space-x-4">
+                        <ul className="flex space-x-4">
+                            {links.map((link, index) => (
+                                <li key={index} className="relative group">
+                                    <a
+                                        href={link.href || '#'}
+                                        className="hover:text-gray-300 transition-colors"
+                                        onClick={(e) => {
+                                            if (link.sublinks) {
+                                                e.preventDefault();
+                                                toggleSublinks(index);
+                                            }
+                                        }}
+                                    >
+                                        {link.label}
+                                    </a>
+                                    {link.sublinks && (
+                                        <ul className="hidden group-hover:block absolute shadow-md rounded mt-2 space-y-2 p-4 w-64">
+                                            {link.sublinks.map((sublink, subIndex) => (
+                                                <li key={subIndex} className="p-2">
+                                                    <a
+                                                        href={sublink.href}
+                                                        className="block hover:text-gray-300 transition-colors"
+                                                    >
+                                                        {sublink.label}
+                                                    </a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
 
                 {/* Right-aligned Children and Hamburger Menu */}
@@ -78,7 +79,7 @@ export const Nav: React.FC<NavProps> = ({ links, brandName, siteLogo = null, chi
                     {/* Children */}
                     <div className="hidden md:block">{children}</div>
 
-                    {/* "Hamburger" Icon */}
+                    {/* "Hamburger" Icon (Shown on xs and sm displays) */}
                     <button className="md:hidden focus:outline-none" onClick={toggleMenu}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +122,7 @@ export const Nav: React.FC<NavProps> = ({ links, brandName, siteLogo = null, chi
 
             {/* Dropdown Menu for Small Screens */}
             <ul
-                className={`md:hidden bg-blue-500 w-64 absolute right-4 transition-all duration-300 ease-in-out rounded-md shadow-lg ${
+                className={`md:hidden bs-bg-blue-base w-65 absolute right-4 transition-all duration-300 ease-in-out rounded-md shadow-lg ${
                     isOpen ? 'top-14' : 'top-[-490px]'
                 }`}
             >
@@ -129,7 +130,7 @@ export const Nav: React.FC<NavProps> = ({ links, brandName, siteLogo = null, chi
                     <li key={index} className="my-2 px-4">
                         <a
                             href={link.href || '#'}
-                            className="hover:text-gray-300 transition-colors block"
+                            className="bs-dropdown-options transition-colors block"
                             onClick={(e) => {
                                 if (link.sublinks) {
                                     e.preventDefault();

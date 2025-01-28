@@ -1,26 +1,108 @@
 /*
 IMPORTANT: Import order matters.
 */
-@import '@wwtdev/bsds-css/dist/wwt-bsds.min.css';
+@import '@wwtdev/bsds-css/dist/wwt-bsds.css';
 @import 'tailwindcss';
+
+/*
+*
+* SECTION: Overrides of Tailwinds
+*
+*/
+@theme {
+    --breakpoint-md: 900px; /* Custom md breakpoint to aid Nav display */
+}
+
 @tailwind utilities;
 
-/* Base styles for light and dark themes */
-body {
-    color: #212529;
-    background-color: #e9ecef;
+/*
+*
+* SECTION: Adjustments to the WWT "Blue Steel" Color Scheme
+*
+*/
+:root {
+    --bs-ink-blue: var(--bs-blue-300); /* Override an earlier assignment of --bs-blue-200 (see wwt-bsds.css) */
+}
+
+.dark {
+    --bs-ink-blue: var(--bs-blue-300); /* Override for dark mode */
+}
+
+body main {
+    background-color: #f9f9f9; /* Soft white for a subtle difference with white */
+}
+
+body.dark main {
+    background-color: #080808; /* Soft black for a subtle difference with black */
+}
+
+body input,
+body select {
+    background-color: white;
+}
+
+body.dark input,
+body.dark select {
+    background-color: black;
+}
+body main h1 {
+    color: var(
+        --bs-ink-blue
+    ); /* Override an earlier assignmment of --bs-ink-base (from --bs-black or .dark --bs-white) */
+    font-size: 1.6rem; /* Override /* Override var(--bs-text-f-2xl); */
+    font-weight: bold;
+}
+
+body main h2 {
+    color: var(--bs-purple-400);
+    font-size: 1.3rem; /* Override var(--bs-text-f-2xl); */
+}
+
+body.dark main h2 {
+    color: var(--bs-purple-200);
+    font-size: 1.3rem; /* Override var(--bs-text-f-2xl); */
 }
 
 body.dark {
-    color: #e9ecef;
-    background-color: #212529;
+    color: white;
 }
 
-/* Shared header and footer styles */
+button.bs-button {
+    min-width: 8rem;
+}
+button.bs-button.secondary {
+    background-color: var(--bs-gray-400);
+}
+
+button.bs-button.secondary:hover {
+    background-color: var(--bs-gray-300);
+}
+
 header,
 footer {
-    color: #f8f9fa;
-    background-color: #1a1a1a;
+    color: white;
+    /* For both light and dark modes, the header and footer will be dark black */
+    background-color: black;
+}
+
+/*
+*
+* SECTION: Page Layout
+*
+*/
+/* Ensure the body and root take up the full height */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Grow to fill the available space */
 }
 
 /* Footer styles */
@@ -40,17 +122,12 @@ footer img {
     margin-bottom: 0.5rem;
 }
 
-/* Ensure the body and root take up the full height */
-html,
-body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+.card {
+    background-color: white;
+    border: 1px solid var(--bs-gray-500);
 }
 
-#root {
-    display: flex;
-    flex-direction: column;
-    flex: 1; /* Grow to fill the available space */
+body.dark .card {
+    background-color: var(--bs-gray-500);
+    border: 0;
 }
