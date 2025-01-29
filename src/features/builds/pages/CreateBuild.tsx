@@ -21,14 +21,18 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
         password: '',
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
-
-    if (isLoading) {
-        return <p>Loading data...</p>;
-    }
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+    };
+
+    const isFieldValid = (value: string, list: string[]) => {
+        return list.includes(value.trim());
+    };
+    const togglePasswordVisibility = () => {
+        setShowPassword((prev) => !prev);
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,39 +46,32 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
         }, 2000);
     };
 
-    const isFieldValid = (fieldValue: string) => fieldValue.trim() !== '';
+    if (isLoading) {
+        return <p>Loading data...</p>;
+    }
 
     return (
         <>
             <h1>Create Build</h1>
             <br />
-            <form onSubmit={handleSubmit} className="w-full max-w-6xl mx-auto space-y-6">
-                {/* Arrange cards in a responsive grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Build Details Card */}
+            <form onSubmit={handleSubmit} className="">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="card shadow rounded p-4">
                         <h2 className="text-lg font-semibold mb-4">Build Details</h2>
                         <div className="space-y-4">
-                            <div className="flex items-center space-x-4">
-                                <label htmlFor="created_by" className="text-sm font-medium text-gray-700 w-1/3">
-                                    Engineer Name:
-                                </label>
+                            <div className="">
+                                <label htmlFor="created_by">Engineer Name:</label>
                                 <input
                                     type="text"
                                     id="created_by"
                                     name="created_by"
                                     value={formData.created_by}
                                     onChange={handleChange}
-                                    className={`block w-2/3 rounded-md border ${
-                                        isFieldValid(formData.created_by) ? 'border-gray-300' : 'border-red-500'
-                                    } shadow-sm focus:ring-blue-500 focus:border-blue-500`}
-                                    aria-label="Engineer Name"
+                                    className="border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
                                 />
                             </div>
-                            <div className="flex items-center space-x-4">
-                                <label htmlFor="customer_name" className="text-sm font-medium text-gray-700 w-1/3">
-                                    Customer Name:
-                                </label>
+                            <div className="">
+                                <label htmlFor="customer_name">Customer Name:</label>
                                 <input
                                     type="text"
                                     id="customer_name"
@@ -82,8 +79,7 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                                     value={formData.customer_name}
                                     onChange={handleChange}
                                     list="customers"
-                                    className="block w-2/3 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                    aria-label="Customer Name"
+                                    className="border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
                                 />
                                 <datalist id="customers">
                                     {customers.map((customer, index) => (
@@ -91,8 +87,8 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                                     ))}
                                 </datalist>
                             </div>
-                            <div className="flex items-center space-x-4">
-                                <label htmlFor="project_name" className="text-sm font-medium text-gray-700 w-1/3">
+                            <div className="">
+                                <label htmlFor="project_name" className="">
                                     Project Name:
                                 </label>
                                 <input
@@ -102,7 +98,16 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                                     value={formData.project_name}
                                     onChange={handleChange}
                                     list="projects"
-                                    className="block w-2/3 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                    data-error={
+                                        !isFieldValid(formData.project_name, ['Project X', 'Project Y'])
+                                            ? 'true'
+                                            : 'false'
+                                    }
+                                    className={` ${
+                                        isFieldValid(formData.project_name, ['Project X', 'Project Y'])
+                                            ? 'border-gray-300'
+                                            : 'border-red-500'
+                                    } shadow-sm focus:ring-blue-500 focus:border-blue-500`}
                                     aria-label="Project Name"
                                 />
                                 <datalist id="projects">
@@ -110,8 +115,8 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                                     <option value="Project Y" />
                                 </datalist>
                             </div>
-                            <div className="flex items-center space-x-4">
-                                <label htmlFor="build_name" className="text-sm font-medium text-gray-700 w-1/3">
+                            <div className="">
+                                <label htmlFor="build_name" className="">
                                     Build Name:
                                 </label>
                                 <input
@@ -120,14 +125,14 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                                     name="build_name"
                                     value={formData.build_name}
                                     onChange={handleChange}
-                                    className={`block w-2/3 rounded-md border ${
-                                        isFieldValid(formData.build_name) ? 'border-gray-300' : 'border-red-500'
+                                    className={` ${
+                                        isFieldValid(formData.build_name, []) ? 'border-gray-300' : 'border-red-500'
                                     } shadow-sm focus:ring-blue-500 focus:border-blue-500`}
                                     aria-label="Build Name"
                                 />
                             </div>
-                            <div className="flex items-center space-x-4">
-                                <label htmlFor="device_oem" className="text-sm font-medium text-gray-700 w-1/3">
+                            <div className="">
+                                <label htmlFor="device_oem" className="">
                                     OEM:
                                 </label>
                                 <input
@@ -137,7 +142,10 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                                     value={formData.device_oem}
                                     onChange={handleChange}
                                     list="oems"
-                                    className="block w-2/3 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                    data-error={!isFieldValid(formData.device_oem, oems) ? 'true' : 'false'}
+                                    className={` ${
+                                        isFieldValid(formData.device_oem, oems) ? 'border-gray-300' : 'border-red-500'
+                                    } shadow-sm focus:ring-blue-500 focus:border-blue-500`}
                                     aria-label="OEM"
                                 />
                                 <datalist id="oems">
@@ -148,45 +156,54 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                             </div>
                         </div>
                     </div>
-
-                    {/* ETO Device Card */}
                     <div className="card shadow rounded p-4">
-                        <h2 className="text-lg font-semibold mb-4">ETO Device</h2>
+                        <h2>ETO Device</h2>
                         <div className="space-y-4">
                             {[
-                                {
-                                    id: 'serial_number',
-                                    label: 'Serial Number',
-                                },
+                                { id: 'serial_number', label: 'Serial Number' },
                                 { id: 'ip_address', label: 'IP Address' },
                                 { id: 'user_login', label: 'User Login' },
-                                { id: 'password', label: 'Password' },
                             ].map(({ id, label }) => (
-                                <div key={id} className="flex items-center space-x-4">
-                                    <label htmlFor={id} className="text-sm font-medium text-gray-700 w-1/3">
-                                        {label}:
-                                    </label>
+                                <div key={id} className="">
+                                    <label htmlFor={id}>{label}:</label>
                                     <input
-                                        type={id === 'password' ? 'password' : 'text'}
+                                        type="text"
                                         id={id}
                                         name={id}
                                         value={formData[id as keyof typeof formData]}
                                         onChange={handleChange}
-                                        className="block w-2/3 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                        className="border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
                                     />
                                 </div>
                             ))}
+                            <div className="relative">
+                                <label htmlFor="password">Password:</label>
+                                <div className="flex items-center border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                    <input
+                                        type={showPassword ? 'text' : 'password'}
+                                        id="password"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        className="w-full p-2"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={togglePasswordVisibility}
+                                        className="bs-button secondary"
+                                    >
+                                        {showPassword ? 'Hide' : 'Show'}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     {/* Placeholder for Services */}
                     <div className="card shadow rounded p-4">
                         <h2 className="text-lg font-semibold mb-4">Services</h2>
                         <p className="text-sm text-gray-500">Services functionality coming soon...</p>
                     </div>
                 </div>
-
-                {/* Action Buttons */}
                 <div className="flex justify-center space-x-4 mt-6">
                     <button type="button" onClick={() => window.history.back()} className="bs-button secondary">
                         Cancel
