@@ -74,8 +74,34 @@ button.bs-button.secondary {
     background-color: var(--bs-gray-400);
 }
 
+/* TIP FROM:  https://noahliebman.net/2024/08/beating-important-user-agent-styles/ */
+input {
+    /* prevent anything that tries to change this from ever getting there */
+    transition:
+        color calc(infinity * 1s) step-end,
+        background-color calc(infinity * 1s) step-end;
+
+    background-color: white;
+    color: black;
+}
+
+body.dark input {
+    background-color: black;
+    color: white;
+}
+
+body input.data-center {
+    background-color: black;
+    color: white;
+}
+
 button.bs-button.secondary:hover {
     background-color: var(--bs-gray-300);
+}
+
+.home a {
+    color: var(--bs-ink-blue);
+    text-decoration: underline;
 }
 
 header,

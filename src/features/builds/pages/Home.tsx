@@ -3,7 +3,7 @@ import { Alert } from '../../../common/components/alerts/Alert';
 
 export const Home: React.FC = () => {
     return (
-        <div>
+        <div className="home">
             <h1>Server Provisioning Overview</h1>
             <Alert>
                 <p>Release v4.6.2 (1/1/2025)</p>

@@ -25,6 +25,7 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
+        console.log({ name, value });
         setFormData({ ...formData, [name]: value });
     };
 
@@ -126,7 +127,7 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                                     value={formData.build_name}
                                     onChange={handleChange}
                                     className={` ${
-                                        isFieldValid(formData.build_name, []) ? 'border-gray-300' : 'border-red-500'
+                                        isFieldValid(formData.build_name, []) ? 'border-gray-300' : 'border-gray-300'
                                     } shadow-sm focus:ring-blue-500 focus:border-blue-500`}
                                     aria-label="Build Name"
                                 />
@@ -172,7 +173,7 @@ export const CreateBuild: React.FC<CreateBuildProps> = () => {
                                         name={id}
                                         value={formData[id as keyof typeof formData]}
                                         onChange={handleChange}
-                                        className="border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                        className="focus:ring-blue-500 focus:border-blue-500"
                                     />
                                 </div>
                             ))}
