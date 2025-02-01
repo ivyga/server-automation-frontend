@@ -14,7 +14,7 @@ export const Button: React.FC<ButtonProps> = ({ label, variant, ...props }) => {
         warning: 'bg-yellow-500 hover:bg-yellow-600',
     };
 
-    const variantClass = variantClasses[variant] || 'bg-blue-500 hover:bg-blue-600'; // Default to primary
+    const variantClass = variantClasses[variant] || variantClasses.primary;
 
     return (
         <button

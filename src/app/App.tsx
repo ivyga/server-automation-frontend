@@ -3,7 +3,7 @@ import { Home } from '../features/builds/pages/Home.js';
 import { About } from '../features/builds/pages/About.js';
 import { UnderConstruction } from '../features/builds/pages/UnderConstruction.js';
 import { CreateBuild } from '../features/builds/pages/CreateBuild.js';
-import { ErrorModal, WaitingModal } from '../common/components/modals/modals.js';
+import { ErrorModal, WaitingModal } from '../common/components/modals.js';
 import { DataProvider } from './DataProvider';
 import { ErrorBoundary } from './ErrorBoundary.js';
 import { NavLink } from './Nav.js';

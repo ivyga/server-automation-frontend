@@ -1,5 +1,5 @@
 import conf from '../../conf/conf';
-import { displayError, displayWaiting, hideWaiting } from '../components/modals/modals';
+import { displayError, displayWaiting, hideWaiting } from '../components/modals';
 import { saveObjectToLocalStorage } from './localStoreageHelpers';
 import { mockFetch } from './mockFetch';
 
@@ -16,7 +16,7 @@ export const enhancedFetch = async (
   url: string,
   options?: RequestInit
 ): Promise<Response> => {
-  displayWaiting(); // TODO: Improved Waiting Modal
+  displayWaiting(); // TODO: Improve Waiting Modal
   try {
     let redactedBody: unknown = {};
     try {
