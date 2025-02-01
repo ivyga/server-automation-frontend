@@ -1,15 +1,11 @@
 import React from 'react';
 
-// Note:  This puts a thin wrapper over react-bootstrap Button to make the Button definition more terse for the
-// usual situation where the text displayed on the button is a simple string.
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     label: string;
     variant: 'primary' | 'secondary' | 'danger' | 'success' | 'warning'; // Example variants
 }
 
 export const Button: React.FC<ButtonProps> = ({ label, variant, ...props }) => {
-    // Apply different styles based on the variant
-    // TODO: Does tailwind have a bs-primary?
     const variantClasses = {
         primary: 'bg-blue-500 hover:bg-blue-600',
         secondary: 'bg-gray-500 hover:bg-gray-600',
@@ -28,4 +24,20 @@ export const Button: React.FC<ButtonProps> = ({ label, variant, ...props }) => {
             {label}
         </button>
     );
+};
+
+export interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    label: string;
+}
+
+export const PrimaryButton: React.FC<PrimaryButtonProps> = ({ label, ...props }) => {
+    return <Button {...props} label={label} variant="primary" />;
+};
+
+export interface SecondaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    label: string;
+}
+
+export const SecondaryButton: React.FC<SecondaryButtonProps> = ({ label, ...props }) => {
+    return <Button {...props} label={label} variant="secondary" />;
 };
