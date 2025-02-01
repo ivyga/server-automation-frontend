@@ -2,4 +2,5 @@
 export default {
     environment: 'local',
     backendUrl: 'https://datausa.io/api/',
+    shouldMockBackend: false,
 };

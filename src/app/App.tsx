@@ -1,148 +1,103 @@
-/* eslint-disable no-console */
-import React, { useState, useEffect, Component, ErrorInfo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { HorizontalMenu, HamburgerMenu } from '../common/components/navbars';
-import { Home } from '../features/main-feature/pages/Home';
-import { About } from '../features/main-feature/pages/About';
-import { StyleDemo } from '../features/main-feature/pages/StyleDemo';
-import { ErrorModal, WaitingModal, displayError } from '../common/components/modals';
+import { Home } from '../features/builds/pages/Home.js';
+import { About } from '../features/builds/pages/About.js';
+import { UnderConstruction } from '../features/builds/pages/UnderConstruction.js';
+import { CreateBuild } from '../features/builds/pages/CreateBuild.js';
+import { ErrorModal, WaitingModal } from '../common/components/modals/modals.js';
+import { DataProvider } from './DataProvider';
+import { ErrorBoundary } from './ErrorBoundary.js';
+import { NavLink } from './Nav.js';
+import { Header } from './Header.js';
+import { Footer } from './Footer.js';
 
-// eslint-disable-next-line import/extensions
-import conf from '../conf/conf.js';
+import './App.css';
 
-import './App.scss';
-import siteLogo from '../images/site-logo.png';
-import wwtLogo from '../images/wwt-logo.png';
-import { ApiExample } from '../features/demo-api/pages/ApiExample.js';
-import { FormDemo } from '../features/demo-form/pages/FormDemo.js';
-
-const links = [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Style Demonstration', href: '/demo' },
-    { label: 'API Demo', href: '/demo-api' },
-    { label: 'Form Demo', href: '/demo-form' },
+// NOTE: This is effectively the entry point for the application (technically, it is main.tsx).
+// All routes and navigation is based on the map below.
+const navLinks: NavLink[] = [
+    { label: 'Home', href: '/', component: Home },
+    {
+        label: 'Builds',
+        sublinks: [
+            { label: 'Create', href: '/create-build', component: CreateBuild },
+            { label: 'Update', href: '/update-build', component: UnderConstruction },
+            { label: 'View', href: '/view-build', component: UnderConstruction },
+        ],
+    },
+    {
+        label: 'Firmware',
+        sublinks: [
+            { label: 'Upload', href: '/firmware-upload', component: UnderConstruction },
+            { label: 'Bundle', href: '/firmware-bundle', component: UnderConstruction },
+        ],
+    },
+    {
+        label: 'Servers',
+        sublinks: [
+            { label: 'CSV Upload', href: '/csv-upload', component: UnderConstruction },
+            { label: 'Status', href: '/server-status', component: UnderConstruction },
+            { label: 'DHCP', href: '/dhcp-table', component: UnderConstruction },
+        ],
+    },
+    { label: 'Statistics', href: '/statistics', component: UnderConstruction },
+    {
+        label: 'Links',
+        sublinks: [
+            {
+                label: 'Sharepoint',
+                href: 'https://wwt.sharepoint.com/sites/GICSoftwareEngineering/SitePages/Self-Service-Automation.aspx',
+            },
+            {
+                label: 'Patch Notes',
+                href: 'https://wwt.sharepoint.com/:u:/r/sites/GICSoftwareEngineering/SitePages/Self-Service-Patch-Release-Notes.aspx?csf=1&web=1&e=LoxQ3s',
+            },
+            {
+                label: 'Manuals',
+                href: 'https://wwt.sharepoint.com/sites/GICSoftwareEngineering/SitePages/Operating-Instructions_SelfService.aspx',
+            },
+            {
+                label: 'Videos',
+                href: 'https://wwt.sharepoint.com/sites/GICSoftwareEngineering/SitePages/Instructional-Videos_Self-Service.aspx',
+            },
+        ],
+    },
+    { label: 'About', href: '/about', component: About },
 ];
 
-class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
-    constructor(props: { children: React.ReactNode }) {
-        super(props);
-        this.state = { hasError: false };
-    }
-
-    static getDerivedStateFromError(): { hasError: boolean } {
-        return { hasError: true };
-    }
-
-    // TODO: Test Global Error Catching
-    // eslint-disable-next-line class-methods-use-this
-    componentDidCatch(error: Error, info: ErrorInfo): void {
-        console.error('Error Boundary Caught an Error:', error, info);
-        displayError('An Unexpected Error Occurred', error.message);
-    }
-
-    render() {
-        if (this.state.hasError) {
-            return <p>Something went wrong. Please refresh the page.</p>;
+const generateRoutes = (links: NavLink[]): JSX.Element[] => {
+    return links.flatMap((link) => {
+        const routes: JSX.Element[] = [];
+        if (link.href && link.component) {
+            routes.push(<Route key={link.href} path={link.href} element={<link.component />} />);
         }
-        return this.props.children;
-    }
-}
+        if (link.sublinks) {
+            routes.push(...generateRoutes(link.sublinks));
+        }
+        return routes;
+    });
+};
 
 export const App = () => {
-    useEffect(() => {
-        const handleGlobalError = (event: ErrorEvent) => {
-            displayError('A JavaScript Error Occurred', event.message);
-        };
-
-        const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
-            displayError('An Unhandled Promise Rejection Occurred', String(event.reason));
-        };
-
-        window.onerror = (message, _source, _lineno, _colno, error) => {
-            handleGlobalError(new ErrorEvent('error', { message: String(message), error }));
-        };
-
-        window.onunhandledrejection = handleUnhandledRejection;
-
-        return () => {
-            window.onerror = null;
-            window.onunhandledrejection = null;
-        };
-    }, []);
-
-    console.log(`environment: ${conf.environment}`);
     return (
-        <ErrorBoundary>
-            <Router>
-                <ErrorModal />
-                <WaitingModal />
-                <div className="app-container">
-                    <Header />
-                    <main className="content">
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/demo" element={<StyleDemo />} />
-                            <Route path="/demo-api" element={<ApiExample />} />
-                            <Route path="/demo-form" element={<FormDemo />} />
-                            <Route path="*" element={<Navigate to="/" replace />} />
-                        </Routes>
-                    </main>
-                    <Footer />
-                </div>
-            </Router>
-        </ErrorBoundary>
-    );
-};
-
-const Header = () => {
-    const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-        return (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
-    });
-
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    }, [theme]);
-
-    const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-    };
-
-    return (
-        <header className="d-flex justify-content-between align-items-center p-1" style={{ height: '60px' }}>
-            <div className="d-flex align-items-center">
-                <a className="navbar-brand d-flex align-items-center" href="/">
-                    <img src={siteLogo} alt="Site Logo" className="me-2" style={{ height: '40px' }} />
-                    <span className="brand-name">GIC Application</span>
-                </a>
-                <HorizontalMenu brand="MyApp" logoSrc={siteLogo} logoAlt="Site Logo" links={links} />
+        <>
+            <ErrorModal />
+            <WaitingModal />
+            <div className="flex flex-col min-h-screen">
+                <Header navLinks={navLinks} />
+                <main className="flex-1 p-4">
+                    <ErrorBoundary>
+                        <Router>
+                            <DataProvider>
+                                <Routes>
+                                    {generateRoutes(navLinks)}
+                                    <Route path="*" element={<Navigate to="/" replace />} />
+                                </Routes>
+                            </DataProvider>
+                        </Router>
+                    </ErrorBoundary>
+                </main>
+                <Footer />
             </div>
-            <div className="d-flex align-items-center">
-                <div className="form-check form-switch me-3">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="themeSwitch"
-                        checked={theme === 'dark'}
-                        onChange={toggleTheme}
-                    />
-                    <label className="form-check-label" htmlFor="themeSwitch">
-                        Dark Mode
-                    </label>
-                </div>
-                <HamburgerMenu brand="MyApp" logoSrc={siteLogo} logoAlt="Site Logo" links={links} />
-            </div>
-        </header>
-    );
-};
-
-const Footer: React.FC = () => {
-    return (
-        <footer className="footer">
-            <img src={wwtLogo} alt="WWT Logo" className="footer-logo" />
-            <p>&copy; {new Date().getFullYear()} World Wide Technology. All Rights Reserved.</p>
-        </footer>
+        </>
     );
 };

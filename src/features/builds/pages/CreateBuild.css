@@ -1,0 +1,98 @@
+/*
+@import '../../../common/colors.scss';
+
+$left-column-width: 130px;
+$right-column-width: 300px;
+
+// TODO: Make a media query for really small devices and place services and buttons below ETO Device
+.create-form {
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .form-layout {
+        display: flex;
+        gap: 1rem; // Space between left and right columns
+    }
+
+    .form-column {
+        flex: 1; // Ensure each column takes up equal space
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; // Space between fieldsets within a column
+    }
+
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem !important; // Reduce space between form groups
+        padding-top: 1rem;
+        padding-bottom: .5rem;
+    }
+
+    .form-group {
+        display: flex; // Make label and input align horizontally
+        align-items: flex-start; // Align items at the top
+        gap: 0.5rem; // Reduce space between label and input
+        margin-bottom: 0.25rem !important; // Reduce space between groups
+    }
+
+    label.form-label {
+        flex: 0 0 $left-column-width; // Fixed width for label
+        text-align: right; // Align label text to the right
+        margin-bottom: 0 !important; // Remove extra margin below the label
+    }
+
+    input.form-control,
+    select.form-select {
+        flex: 1; // Allow inputs to grow and take up available space
+        margin: 0 !important; // Remove any extra margin
+    }
+
+    .input-group {
+        display: inline-flex; // Ensure the input group behaves as a single inline element
+        width: $right-column-width;
+
+        input.form-control {
+            flex: 1; // Allow the input to take up available space within the group
+        }
+
+        button {
+            flex-shrink: 0; // Prevent the button from shrinking or wrapping
+        }
+    }
+
+    .list-group {
+        display: inline-block;
+        min-height: 328px;
+    }
+
+    .list-group-item {
+        padding: 0;
+        padding-left: 5px;
+        margin: 0;
+        font-size: .8rem;
+    }
+
+    .card-layout {
+        display: flex;
+        flex-wrap: wrap; // Allow wrapping of cards to the next row
+        gap: 1rem; // Add spacing between cards
+        justify-content: flex-start; // Align items to the start (left-to-right layout)
+    }
+
+    .card-with-width {
+        flex: 1 1 calc(50% - 1rem); // Each card takes up 50% of the container width minus the gap
+        max-width: calc(50% - 1rem); // Ensure cards stay within the calculated width
+        box-sizing: border-box; // Include padding and border in width calculations
+    }
+
+    @media (max-width: 768px) {
+        .card-with-width {
+            flex: 1 1 100%; // On smaller devices, make cards full-width
+            max-width: 100%; // Ensure full width on smaller devices
+        }
+    }
+}
+    */

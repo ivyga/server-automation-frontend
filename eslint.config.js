@@ -3,6 +3,7 @@ import path from 'path';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+// @ts-ignore
 import importPlugin from 'eslint-plugin-import';
 import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
@@ -11,6 +12,10 @@ import reactRefreshPlugin from 'eslint-plugin-react-refresh';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// NOTE: Most of the linting rules are copies from AirBnb
+// Due to difficulties importing those rules, they have been copied.
+// TODO: Should we give the AirBnb import another go?
+// TODO: Should we move to a 2 space tab?
 export default [
     {
         files: ['src/**/*.{ts,tsx}'],

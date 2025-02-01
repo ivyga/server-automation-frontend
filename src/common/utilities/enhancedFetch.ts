@@ -1,5 +1,7 @@
-import { displayError, displayWaiting, hideWaiting } from '../components/modals';
+import conf from '../../conf/conf';
+import { displayError, displayWaiting, hideWaiting } from '../components/modals/modals';
 import { saveObjectToLocalStorage } from './localStoreageHelpers';
+import { mockFetch } from './mockFetch';
 
 /**
  * Fetches data from the specified URL while showing a loading overlay saving useful troubleshooting information in local storage.
@@ -22,10 +24,16 @@ export const enhancedFetch = async (
         redactedBody = redactPasswords(JSON.parse(options.body));
       }
       saveObjectToLocalStorage('lastFetch', { url, body: redactedBody });
-    } catch {
+    } catch(err){
+      // eslint-disable-next-line no-console
+      console.log(err);
       displayError('Error', 'Check console for more information'); // TODO: Improve Error Modal
     }
 
+    if(conf.shouldMockBackend) {
+      const mock = await mockFetch(url);
+      return mock as Response;
+    }
     const response = await fetch(url, options);
     try {
       const data = await response.clone().json();

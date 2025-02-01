@@ -1,0 +1,19 @@
+[
+  {
+    "serial_number": "string",
+    "rack_name": "string",
+    "rack_location": "string",
+    "chassis_serial": "string",
+    "node": "string",
+    "network_config": {},
+    "asset_tag": "string",
+    "burn_in_runtime": 0,
+    "username": "string",
+    "password": "string",
+    "additional_info": {},
+    "created_by": "string",
+    "creation_date": "2025-01-08T12:50:25.786016",
+    "updated_by": "string",
+    "last_updated": "2025-01-08T12:50:25.786019"
+  }
+]
