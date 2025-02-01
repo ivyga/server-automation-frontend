@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from '../../../common/components/alerts/Alert';
+import { Alert } from '../../../common/components/alerts';
 
 export const Home: React.FC = () => {
     return (
